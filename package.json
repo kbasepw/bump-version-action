@@ -1,0 +1,37 @@
+{
+  "name": "bump-version-action",
+  "description": "Conventional commits compliant version update action for GitHub Workflows.",
+  "author": {
+    "name": "KBase.pw",
+    "url": "https://kbase.pw"
+  },
+  "version": "0.0.0",
+  "license": "MIT",
+  "keywords": [
+    "ci",
+    "cicd",
+    "conventional-commits",
+    "github-actions",
+    "version-management"
+  ],
+  "homepage": "https://github.com/kbasepw/bump-version-action#readme",
+  "bugs": {
+    "url": "https://github.com/kbasepw/bump-version-action/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kbasepw/bump-version-action.git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@jonabc/actions-mocks": "^1.1.1",
+    "jest": "^26.5.3"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/exec": "^1.0.4"
+  }
+}

@@ -1,0 +1,59 @@
+= bump-version-action
+
+Conventional commits compliant version update action for GitHub Workflows.
+
+This action will search the last version tag and bump package version based on
+conventional commits rules.
+
+== Rules
+
+|===
+| type | version level
+
+| fix
+| PATCH
+
+| feat
+| MINOR
+
+| feature
+| MINOR
+
+| BREAKING CHANGE
+| MAJOR
+
+|===
+
+Any other commit type (like docs, test, chore) will be ignored for version bump.
+
+== Already tagged commits
+
+If last commit has already a version tag then this action will finish and output
+that version.
+
+== Usage
+
+```yaml
+name: publish workflow
+on:
+  push:
+    branches:
+      - $default-branch
+
+jobs:
+  publish:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository (with all tags)
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: bump version
+        uses: kbasepw/bump-version-action
+        with:
+          version-tag-prefix: v
+
+```
+
