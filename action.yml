@@ -1,0 +1,15 @@
+name: 'bump-version-action'
+description: 'Conventional commits compliant version manager.'
+inputs:
+  version-tag-prefix:
+    description: 'version tag prefix. Default: v'
+    default: 'v'
+    required: false
+outputs:
+  version:
+    description: 'the new package version'
+
+runs:
+  using: 'node12'
+  main: 'src/index.js'
+

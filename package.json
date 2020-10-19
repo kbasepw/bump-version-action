@@ -27,11 +27,11 @@
     "test": "jest"
   },
   "devDependencies": {
-    "@jonabc/actions-mocks": "^1.1.1",
     "jest": "^26.5.3"
   },
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.4"
+    "@actions/exec": "^1.0.4",
+    "comment-json": "^4.1.0"
   }
 }

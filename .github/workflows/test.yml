@@ -1,0 +1,22 @@
+name: "units-test"
+on:
+  push:
+    branches:
+      - $default-branch
+
+jobs:
+  units:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm test
+
+  release-version:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: ./
+      id: version-bump
+    - name: output variable value
+      run: echo ${{ steps.version-bump.version }}

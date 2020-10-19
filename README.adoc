@@ -51,9 +51,12 @@ jobs:
           fetch-depth: 0
 
       - name: bump version
+        id: version-bump
         uses: kbasepw/bump-version-action
         with:
           version-tag-prefix: v
 
+      - name: some other step
+        run: echo ${{ steps.version-bump.version }}
 ```
 
