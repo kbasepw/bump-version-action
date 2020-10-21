@@ -2,11 +2,9 @@ const conventional = require('./conventional');
 const fs = require('fs');
 const git = require('./git');
 const path = require('path');
-const project_types = fs
-  .readdirSync(path.resolve(__dirname, 'project_types'))
-  .filter(file => !file.endsWith('.test.js'))
-  .map(file => path.join(__dirname, 'project_types', file))
-  .map(require);
+const project_types = [
+  require('./project_types/npm')
+];
 
 module.exports = async function action(version_tag_prefix, logger) {
   logger = logger || console;

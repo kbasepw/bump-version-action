@@ -9,7 +9,7 @@ module.exports = {
   name: 'npm',
 
   is_enabled(project_path) {
-    const packageFile = path.resolve(project_path, 'package.json');
+    const packageFile = path.join(project_path, 'package.json');
 
     return fs_access(packageFile)
       .then(() => true)
@@ -17,7 +17,7 @@ module.exports = {
   },
 
   update_version(project_path, next_version) {
-    const packageFile = path.resolve(project_path, 'package.json');
+    const packageFile = path.join(project_path, 'package.json');
     return new Promise(function(resolve, reject) {
       fs.readFile(packageFile, {encoding: 'utf8'}, function(err, content) {
         const pkg = json.parse(content);
