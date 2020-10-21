@@ -10930,6 +10930,7 @@ module.exports = async function action(version_tag_prefix, logger) {
       }));
   }
 
+  logger.info(`bump version: ${next_version}`);
   return next_version;
 }
 
