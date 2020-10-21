@@ -6,6 +6,8 @@ const path = require('path');
 function create_git_project() {
   const project_directory = fs.mkdtempSync(path.join(os.tmpdir(), "test-"));
   child_process.execSync('git init', {cwd: project_directory});
+  child_process.execSync('git config user.name "test user"', {cwd: project_directory});
+  child_process.execSync('git config user.email "user@example.com"', {cwd: project_directory});
   return project_directory;
 }
 
