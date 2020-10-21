@@ -24,9 +24,11 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "ncc build src/index.js -o dist --source-map --license license.txt"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.24.1",
     "jest": "^26.5.3"
   },
   "dependencies": {
