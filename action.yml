@@ -1,5 +1,7 @@
 name: 'bump-version-action'
 description: 'Conventional commits compliant version manager.'
+icon: bookmark
+color: blue
 
 inputs:
   version-tag-prefix:
