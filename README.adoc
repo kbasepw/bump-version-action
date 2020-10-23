@@ -57,6 +57,6 @@ jobs:
           version-tag-prefix: v
 
       - name: some other step
-        run: echo ${{ steps.version-bump.version }}
+        run: echo ${{ steps.version-bump.outputs.version }}
 ```
 

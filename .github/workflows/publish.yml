@@ -19,8 +19,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: ./
-      id: version-bump
+    - name: prebuild action
+      run: npm install && npm run build
+
+    - id: bump-version
+      name: bump package version
+      uses: ./
 
     - name: output variable value
-      run: echo ${{ steps.version-bump.version }}
+      run: echo ${{ steps.bump-version.outputs.version }}
