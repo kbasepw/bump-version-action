@@ -27,4 +27,4 @@ jobs:
       uses: ./
 
     - name: output variable value
-      run: echo ${{ steps.bump-version.outputs.version }}
+      run: echo ${{ steps.bump-version.outputs }}
