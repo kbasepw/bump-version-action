@@ -23,4 +23,4 @@ jobs:
       uses: ./
 
     - name: output variable value
-      run: echo ${{ toJSON(steps.bump-version.outputs) }}
+      run: echo ${{ steps.bump-version.outputs.version }}
