@@ -22,6 +22,10 @@ inputs:
       release: new version {version} [skip ci]
 
       {changelog}
+  commit-add:
+    description: 'Additional files to add to the version update commit'
+    required: false
+    default: ''
 
 outputs:
   version:

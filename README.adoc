@@ -55,6 +55,11 @@ that version.
 | release: new release {version} [skip ci]\n\n{changelog}
 | No
 
+| commit-add
+| Additional files to add to the version update commit.
+|
+| No
+
 | version-tag-prefix
 | The prefix used in version tag name.
 | v

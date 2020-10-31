@@ -35,6 +35,11 @@ export default interface Context {
   readonly commit_message: string;
 
   /**
+   * Additional files to include in version update commit.
+   */
+  readonly commit_add: string;
+
+  /**
    * The commit identifier that trigger this execution.
    */
   readonly commit_id: string;

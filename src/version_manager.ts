@@ -80,7 +80,7 @@ export default class VersionManager {
 
       version_info.commit_id = await this.context.repository.commit(
         commit_message,
-        modified_files,
+        [...modified_files, this.context.commit_add],
         [this.context.version_tag_prefix + version_info.version]
       );
 

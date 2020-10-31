@@ -22,6 +22,10 @@ export default class WorkflowContext implements Context {
   public get version_tag_prefix(): string {
     return core.getInput('version-tag-prefix');
   }
+  
+  public get commit_add(): string {
+    return core.getInput('commit-add');
+  }
 
   public get commit_user_name(): string {
     let value = core.getInput('commit-user-name');
