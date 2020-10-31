@@ -137,7 +137,7 @@ export default class GitRepository implements Repository {
 
     if (Boolean(tags)) {
       await Promise.all(tags.map(tag => {
-        return this.context.execute(`git tag -a ${tag} ${commit_id.output}`);
+        return this.context.execute(`git tag -a ${tag} -m '' ${commit_id.output}`);
       }));
     }
 
