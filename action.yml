@@ -1,7 +1,7 @@
 name: 'bump-version-action'
 description: 'Conventional commits compliant version manager.'
 branding:
-  icon: bookmark
+  icon: tag
   color: blue
 
 inputs:
@@ -9,24 +9,31 @@ inputs:
     description: 'version tag prefix. Default: v'
     default: 'v'
     required: false
-  release-user-name:
-    description: 'the user name used for commit the release'
-    required: true
-  release-user-email:
-    description: 'the user email used for commit the release'
-    required: true
-  release-subject:
-    description: 'the release commit subject pattern'
+  commit-user-name:
+    description: 'The user name used to create the version update commit'
     required: false
-    default: 'release: {version} [skip ci]'
-  release-body:
-    description: 'the release content pattern'
+  commit-user-email:
+    description: 'The user email used to create the version update commit'
     required: false
-    default: '{changelog}'
+  commit-message:
+    description: 'The message of the version update commit. (see message fields for reference)'
+    required: false
+    default: |
+      release: new version {version} [skip ci]
+
+      {changelog}
 
 outputs:
   version:
-    description: 'the new package version'
+    description: 'The calculated new version'
+  current_version:
+    description: 'The version before update'
+  commit_id:
+    description: 'The id of the version update commit'
+  subject:
+    description: 'The version update commit subject'
+  changelog:
+    description: 'The changelog generated with all the commits in this release'
 
 runs:
   using: 'node12'

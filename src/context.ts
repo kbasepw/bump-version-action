@@ -20,6 +20,21 @@ export default interface Context {
   readonly version_tag_prefix: string;
 
   /**
+   * The preferred user name for commits.
+   */
+  readonly commit_user_name: string;
+
+  /**
+   * The preferred user email for commits.
+   */
+  readonly commit_user_email: string;
+
+  /**
+   * The preferred commit message.
+   */
+  readonly commit_message: string;
+
+  /**
    * The commit identifier that trigger this execution.
    */
   readonly commit_id: string;

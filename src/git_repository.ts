@@ -125,6 +125,9 @@ export default class GitRepository implements Repository {
       throw new Error('Unable to add files to commit: ' + add_result.error);
     }
 
+    await this.context.execute(`git config user.name ${this.context.commit_user_name}`);
+    await this.context.execute(`git config user.email ${this.context.commit_user_email}`);
+
     const result = await this.context.execute('git commit -F -', message);
     if(result.exit_code !== 0) {
       throw new Error('unable to create commit: ' + result.error);

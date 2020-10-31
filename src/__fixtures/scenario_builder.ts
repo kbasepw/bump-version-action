@@ -12,6 +12,12 @@ export default class ScenarioContext implements Context {
 
   public commit_id: string = '1234';
 
+  public commit_user_name: string = 'Test User';
+
+  public commit_user_email: string = 'user@test';
+
+  readonly commit_message: string = 'release: new release {version} [skip ci]\n\n{changelog}';
+
   public readonly project_url: string = 'https://github.com/org/project';
 
   public readonly repository: GitRepository;

@@ -74,11 +74,7 @@ export default class VersionManager {
         }))).reduce((list, item) => list.concat(item), []);
 
       this.context.debug('committing changes ...');
-      const commit_message = [
-        `release: new release ${version_info.version} [skip ci]`,
-        '',
-        version_info.changelog
-      ].join('\n');
+      const commit_message = this.execute_template(this.context.commit_message, version_info);
 
       version_info.commit_id = await this.context.repository.commit(
         commit_message,
@@ -90,5 +86,23 @@ export default class VersionManager {
     }
 
     return version_info;
+  }
+
+  private execute_template(template: string, context: object): string {
+    return template.replace(/\{.*?\}/gi, (match) => {
+      const prop = match.substring(1, -1);
+      return this.get_template_value(prop, context);
+    });
+  }
+
+  private get_template_value(path: string, context: any): any {
+    const [name, rest] = path.split('.', 2);
+    const value = context[name] || null;
+
+    if (Boolean(rest) && rest.length > 0) {
+      return Boolean(value) ? this.get_template_value(rest, value) : null;
+    }
+
+    return value;
   }
 }

@@ -41,19 +41,42 @@ that version.
 | Name | Description | Default value | Required
 
 | commit-user-name
-| The user name used to create the release commit.
-|
-| Yes
+| The user name used to create the version update commit.
+| <env:GITHUB_ACTOR>
+| No
 
 | commit-user-email
-| The user email used to create the release commit.
-|
-| Yes
+| The user email used to create the version update commit.
+| <commit-user-name>@<repository owner/organization>
+| No
+
+| commit-message
+| The message of the version update commit. (see message fields for reference).
+| release: new release {version} [skip ci]\n\n{changelog}
+| No
 
 | version-tag-prefix
 | The prefix used in version tag name.
 | v
 | No
+
+|===
+
+==== Message fields
+
+this are the available fields for compose commit message:
+
+|===
+| Name | Description
+
+| version 
+| The calculated new version
+
+| current_version
+| The version before update.
+
+| changelog
+| The changelog generated with all the commits in this release.
 
 |===
 
@@ -64,6 +87,18 @@ that version.
 
 | version
 | The calculated new version
+
+| current_version
+| The version before update.
+
+| commit_id
+| The id of the version update commit
+
+| subject
+| The version update commit subject
+
+| changelog
+| The changelog generated with all the commits in this release.
 
 |===
 
@@ -90,9 +125,13 @@ jobs:
         id: version-bump
         uses: kbasepw/bump-version-action
         with:
+          version-tag-prefix: v
           commit-user-name: CI System
           commit-user-email: ci_admin@example.com
-          version-tag-prefix: v
+          commit-message: |
+            release: new release {version} [skip ci]
+
+            {changelog}
 
       - name: some other step
         run: echo ${{ steps.version-bump.outputs.version }}

@@ -7,9 +7,7 @@ import * as path from 'path';
 
 
 export default class WorkflowContext implements Context {
-
   private project_path: string;
-  
   public readonly repository: GitRepository;
 
   public constructor() {
@@ -23,6 +21,32 @@ export default class WorkflowContext implements Context {
 
   public get version_tag_prefix(): string {
     return core.getInput('version-tag-prefix');
+  }
+
+  public get commit_user_name(): string {
+    let value = core.getInput('commit-user-name');
+    
+    if(!Boolean(value) || value.length === 0) {
+      value = process.env.GITHUB_ACTOR;
+    }
+
+    return value;
+  }
+
+  public get commit_user_email(): string {
+    let value = core.getInput('commit-user-email');
+    
+    if(!Boolean(value) || value.length === 0) {
+      const name = this.commit_user_name;
+      const repo = process.env.GITHUB_REPOSITORY;
+      value = `${name}@${repo.substring(0, repo.indexOf('/'))}`
+    }
+
+    return value;
+  }
+
+  public get commit_message(): string {
+    return core.getInput('commit-message');
   }
 
   public get project_url(): string {

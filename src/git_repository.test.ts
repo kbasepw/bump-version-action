@@ -179,12 +179,10 @@ ${commit.body}
       const commit_id = 'bf8ea1c74183b3f07e5524eb27cb56c2d885c879';
       const context = new TestContext();
       context.execute.mockImplementation((command, input) => {
-        if(command.startsWith('git add')) {
-          return Promise.resolve({exit_code: 0, output: '', error: ''});
-        } else if(command === 'git commit -F -') {
-          return Promise.resolve({exit_code: 0, output: '', error: ''});
-        } else if(command === 'git rev-parse HEAD') {
+        if(command === 'git rev-parse HEAD') {
           return Promise.resolve({exit_code: 0, output: commit_id, error: ''});
+        } else {
+          return Promise.resolve({exit_code: 0, output: '', error: ''});
         }
       });
 
