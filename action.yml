@@ -9,6 +9,20 @@ inputs:
     description: 'version tag prefix. Default: v'
     default: 'v'
     required: false
+  release-user-name:
+    description: 'the user name used for commit the release'
+    required: true
+  release-user-email:
+    description: 'the user email used for commit the release'
+    required: true
+  release-subject:
+    description: 'the release commit subject pattern'
+    required: false
+    default: 'release: {version} [skip ci]'
+  release-body:
+    description: 'the release content pattern'
+    required: false
+    default: '{changelog}'
 
 outputs:
   version:

@@ -1,4 +1,6 @@
 = bump-version-action
+![publish](https://github.com/kbasepw/bump-version-action/workflows/publish/badge.svg)
+![CodeQL](https://github.com/kbasepw/bump-version-action/workflows/CodeQL/badge.svg)
 
 Conventional commits compliant version update action for GitHub Workflows.
 
@@ -33,6 +35,40 @@ that version.
 
 == Usage
 
+=== Action inputs
+
+|===
+| Name | Description | Default value | Required
+
+| commit-user-name
+| The user name used to create the release commit.
+|
+| Yes
+
+| commit-user-email
+| The user email used to create the release commit.
+|
+| Yes
+
+| version-tag-prefix
+| The prefix used in version tag name.
+| v
+| No
+
+|===
+
+=== Action outputs
+
+|===
+| Name | Description
+
+| version
+| The calculated new version
+
+|===
+
+=== Example
+
 ```yaml
 name: publish workflow
 on:
@@ -54,6 +90,8 @@ jobs:
         id: version-bump
         uses: kbasepw/bump-version-action
         with:
+          commit-user-name: CI System
+          commit-user-email: ci_admin@example.com
           version-tag-prefix: v
 
       - name: some other step
