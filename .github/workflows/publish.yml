@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: build action
       run: npm install && npm run build
@@ -24,3 +26,4 @@ jobs:
 
     - name: action outputs
       run: echo ${{ toJson(steps.bump-version.outputs) }}
+
