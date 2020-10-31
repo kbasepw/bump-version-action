@@ -14,9 +14,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: create local branch
-      run: git checkout -b ci --track ${GITHUB_REF:-origin/master}
-
     - name: build action
       run: npm install && npm run build
 
