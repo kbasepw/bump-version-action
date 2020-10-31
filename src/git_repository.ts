@@ -145,7 +145,7 @@ export default class GitRepository implements Repository {
   }
 
   public async push(): Promise<void> {
-    const result = await this.context.execute('git push --tags');
+    const result = await this.context.execute('git push --tags . HEAD');
 
     if (result.exit_code !== 0) {
       this.context.info('unable to push to remote: ' + result.output + result.error);
