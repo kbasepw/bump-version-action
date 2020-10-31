@@ -24,7 +24,7 @@ export default class TestContext implements Context {
 
   public commit_user_email: string = 'user@test';
 
-  readonly commit_message: string = 'release: new release {version} [skip ci]\n\n{changelog}';
+  readonly commit_message: string = 'release: new version {version} [skip ci]\n\n{changelog}';
 
   public project_url: string = 'https://github.com/org/project';
 

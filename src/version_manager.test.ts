@@ -13,6 +13,9 @@ describe('VersionManager', () => {
 
     expect(result).toHaveProperty('current_version', '0.0.0');
     expect(result).toHaveProperty('version', '0.1.0');
+    expect(result).toHaveProperty('subject', 'release: new version 0.1.0 [skip ci]');
+    expect(result).toHaveProperty('changelog', expect.any(String));
+    expect(result.changelog.length).not.toBe(0);
   });
 
   it('should respect last commit version tag', async function() {

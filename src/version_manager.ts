@@ -75,6 +75,8 @@ export default class VersionManager {
 
       this.context.debug('committing changes ...');
       const commit_message = this.execute_template(this.context.commit_message, version_info);
+      const [commit_subject] = commit_message.split('\n');
+      version_info.subject = commit_subject;
 
       version_info.commit_id = await this.context.repository.commit(
         commit_message,
@@ -90,7 +92,7 @@ export default class VersionManager {
 
   private execute_template(template: string, context: object): string {
     return template.replace(/\{.*?\}/gi, (match) => {
-      const prop = match.substring(1, -1);
+      const prop = match.substring(1, match.length - 1);
       return this.get_template_value(prop, context);
     });
   }
