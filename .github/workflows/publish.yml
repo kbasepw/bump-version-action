@@ -25,5 +25,5 @@ jobs:
       uses: ./
 
     - name: action outputs
-      run: echo ${{ toJson(steps.bump-version.outputs) }}
+      run: echo '${{ toJson(steps.bump-version.outputs) }}'
 
