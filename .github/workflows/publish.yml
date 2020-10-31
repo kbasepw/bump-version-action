@@ -32,3 +32,6 @@ jobs:
     - name: action outputs
       run: echo '${{ toJson(steps.bump-version.outputs) }}'
 
+    - name: push
+      run: git push --tags --all
+
