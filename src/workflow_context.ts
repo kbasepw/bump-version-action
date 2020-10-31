@@ -44,7 +44,11 @@ export default class WorkflowContext implements Context {
       }
     };
 
-    exit_code = await exec(command_line, undefined, options);
+    try {
+      exit_code = await exec(command_line, undefined, options);
+    } catch(e) {
+      exit_code = e.code || 128;
+    }
 
     return {
       output,
